@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="page-header">
+                <h1 ng-class="{'text-info': songType == 'new', 'text-warning': songType == 'old', 'text-success': songType == 'chant'}">{{title}}</h1>
+                <p class="text-muted"><span ng-repeat="author in authors"><span ng-show="$index > 0">, </span>{{author}}</span></p>
+            </header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p ng-repeat="line in excerpt track by $index">{{line}}</p>
+        </div>
+        <div class="col-md-6">
+            <p class="btn-group">
+                <button type="button" class="btn btn-info" ng-model="songType" btn-radio="'new'">
+                    <i class="fa fa-fw" ng-class="{'fa-check-square-o': songType == 'new', 'fa-square-o': songType != 'new'}"></i>
+                    neu
+                </button>
+                <button type="button" class="btn btn-warning" ng-model="songType" btn-radio="'old'">
+                    <i class="fa fa-fw" ng-class="{'fa-check-square-o': songType == 'old', 'fa-square-o': songType != 'old'}"></i>
+                    alt
+                </button>
+                <button type="button" class="btn btn-success" ng-model="songType" btn-radio="'chant'">
+                    <i class="fa fa-fw" ng-class="{'fa-check-square-o': songType == 'chant', 'fa-square-o': songType != 'chant'}"></i>
+                    Choral
+                </button>
+            </p>
+            <p ng-show="history.length > 0">
+                <i class="fa fa-fw fa-calendar"></i>
+                zuletzt am <strong>{{history[history.length-1] | date:'dd. MMMM yyyy'}}</strong> gespielt.
+            </p>
+            <p style="cursor:pointer" ng-click="hideHistory = !hideHistory" ng-init="hideHistory = true">
+                <i class="fa fa-fw" ng-class="{'fa-caret-square-o-down': !hideHistory, 'fa-caret-square-o-right': hideHistory}"></i>
+                insgesamt <strong>{{history.length}} mal</strong> gespielt.
+            </p>
+            <ul collapse="hideHistory" class="nav nav-pills nav-stacked">
+                <li ng-repeat="date in history"><a ng-href="/#!/date/{{date}}">{{date | date:'dd. MMMM yyyy'}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

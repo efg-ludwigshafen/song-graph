@@ -1,5 +1,56 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang="de", ng-app="songGraph", ng-controller="AppCtrl")
+    head
+        title(ng-bind="meta.title()") SongGraph
+        meta(charset="utf-8")
+        meta(name="fragment", content="!")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/lib/bootswatch/3.1.1/cosmo/bootstrap.min.css")
+        link(rel="stylesheet", href="/lib/font-awesome/4.0.3/css/font-awesome.min.css")
+        link(rel="stylesheet", href="/css/theme.css")
+    body
+        nav.navbar.navbar-static-top.navbar-default(role="navigation")
+            div.container
+                div.navbar-header
+                    button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-content")
+                        span.sr-only Navigation öffnen
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="/#!/") SongGraph
+                div#navbar-content.collapse.navbar-collapse
+                    a.btn.btn-primary.navbar-btn.navbar-left(href="/#!/new/date/")
+                        i.fa.fa-plus
+                    ul.nav.navbar-nav.navbar-left
+                        li.dropdown(ng-class="{'active': $location.path().indexOf('/date/') == 0}")
+                            a.dropdown-toggle(data-toggle="dropdown") Gottesdienste
+                            ul.dropdown-menu
+                                li(style="padding:0.618em; min-width:16em")
+                                    form(ng-submit="$location.path('/date/' + gotoDate)")
+                                        div.input-group
+                                            input.form-control(type="date", ng-model="gotoDate", required, placeholder="heute")
+                                            span.input-group-btn
+                                                button.btn.btn-primary(type="submit")
+                                                    i.fa.fa-search
+                        li.dropdown(ng-class="{'active': $location.path().indexOf('/band/') == 0}")
+                            a.dropdown-toggle(data-toggle="dropdown") Bands
+                            ul.dropdown-menu
+                                li(ng-repeat="band in bands")
+                                    a(ng-href="/#!/band/{{band}}") {{band}}
+        div(ng-view)
+        script(src="/lib/jquery/2.1.0/jquery.min.js")
+        script(src="/lib/bootstrap/3.1.1/js/bootstrap.min.js")
+        script(src="/lib/angular/1.2.8/angular.min.js")
+        script(src="/lib/angular/1.2.8/angular-route.min.js")
+        script(src="/lib/ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js")
+        script(src="/lib/highstock/2.0.0/highstock.js")
+        script(src="/lib/highcharts-ng/0.0.6/highcharts-ng.min.js")
+        script(src="/js/views/app.js")
+        script(src="/js/views/landing-page.js")
+        script(src="/js/views/new-date.js")
+        script(src="/js/views/existing-date.js")
+        script(src="/js/views/song.js")
+        script(src="/js/views/band.js")
+        script(src="/js/services/meta-service.js")
+        script(src="/js/filters/order-object-by.js")
+        script(src="/js/directives/ng-enter.js")

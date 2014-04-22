@@ -1,0 +1,4 @@
+<a>
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    <small class="text-muted">(<span ng-repeat="author in match.model.authors"><span ng-show="$index > 0">, </span>{{author}}</span>)</small>
+</a>

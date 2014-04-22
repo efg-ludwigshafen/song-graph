@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="page-header">
+                <h1>Gottesdienst am {{title}} <small>von der Band <a ng-href="/#!/band/{{band}}">{{band}}</a></small></h1>
+            </header>
+        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Lieder</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="song in songs"><a ng-href="/#!/song/{{song.id}}">
+                    <span ng-class="{'text-info': song.songType == 'new', 'text-warning': song.songType == 'old', 'text-success': song.songType == 'chant'}">{{song.title}}</span>
+                    <small class="text-muted"><span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span></small>
+                </a></li>
+            </ul>
+        </div>
+        <highchart config="songsAsChart" class="col-md-6"></highchart>
+    </div>
+</div>

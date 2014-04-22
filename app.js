@@ -1,14 +1,16 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express')
+  , path = require('path')
+  , favicon = require('static-favicon')
+  , logger = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+  , index = require('./routes/index')
+  , date = require('./routes/date')
+  , song = require('./routes/song')
+  , band = require('./routes/band')
 
-var app = express();
+  , app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +24,10 @@ app.use(cookieParser());
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', index);
+app.use('/date/', date);
+app.use('/song/', song);
+app.use('/band/', band)
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

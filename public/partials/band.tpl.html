@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <header class="page-header">
+                <h1>Statistik für die Band {{title}}</h1>
+            </header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="date in dates | orderObjectBy:'id':reverse">
+                    <a ng-href="/#!/date/{{date.title}}">
+                        {{date.title | date:'dd. MMMM yyyy'}}
+                        <small>
+                            <span class="text-info">{{songsOfTypeInList(date.songs, 'new')}}</span> :
+                            <span class="text-warning">{{songsOfTypeInList(date.songs, 'old')}}</span> :
+                            <span class="text-success">{{songsOfTypeInList(date.songs, 'chant')}}</span>
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <highchart config="songsAsChart" class="col-md-6"></highchart>
+    </div>
+</div>
