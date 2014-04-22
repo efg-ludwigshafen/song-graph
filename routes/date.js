@@ -33,11 +33,6 @@ router.get('/:date', function(req, res) {
     });
 });
 
-// ===== search =====================================================
-router.get('/since/:date', function(req, res) {
-
-});
-
 router.get('/by/band/:band', function(req, res) {
     service.findByBand(req.params.band, function(err, body) {
         if (err)
