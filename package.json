@@ -1,7 +1,25 @@
 {
   "name": "song-graph",
-  "version": "0.0.2",
-  "private": true,
+  "version": "0.0.3",
+  "author": "Dominik Schreiber <dominik@dominikschreiber.com>",
+  "description": "statistics about songs played in a church",
+  "contributors": [
+      {
+          "name": "Dominik Schreiber",
+          "email": "dominik@dominikschreiber.com",
+          "url": "http://dominikschreiber.com"
+      }
+  ],
+  "homepage": "http://repertoire.efg-ludwigshafen.de",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/dominikschreiber/song-graph"
+  },
+  "bugs": {
+      "url": "https://github.com/dominikschreiber/song-graph/issues",
+      "email": "dominik@dominikschreiber.com"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "node ./bin/www"
   },
