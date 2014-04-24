@@ -32,8 +32,8 @@ function fetchById(id, cache, next) {
                 } else {
                     cache[id] = {
                         title: window.document.title,
-                        authors: window.$.map(window.$('.authors a'), function(el) { return window.$(el).text() }),
-                        excerpt: window.$('.lyrics-prev').html().split('<br>').map(function(line) { return line.trim(); }).join('\n'),
+                        authors: window.$.map(window.$('.authors a'), function(el) { return window.$(el).text() }),
+                        excerpt: window.$('.lyrics-prev').html().split('<br>').map(function(line) { return line.trim(); }).join('\n'),
                         year: parseInt(window.$('.copyright').html().split(' ')[1]),
                         songType: 'chant'
                     };
@@ -53,10 +53,10 @@ exports.findByName = function(name, next) {
     if (name_cache[name]) {
         next(undefined, name_cache[name]);
     } else {
-        fetchByName(name, name_cache, function(err) { 
+        fetchByName(name, name_cache, function(err) {
             if (err) {
                 next(err);
-            } else {
+            } else {
                 exports.findByName(name, next);
             }
         });

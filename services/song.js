@@ -11,10 +11,10 @@ var async = require('async')
                         map: function(doc) { if (doc._id.match(/^\d+$/) != null) { emit(doc._id, doc); } }
                     },
                     findByName: {
-                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) emit(doc.title, doc); }
+                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) emit(doc.title, doc); }
                     },
                     findByNamePrefix: {
-                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) { for (var i = 0; i < doc.title.length; i++) { emit(doc.title.toLowerCase().substring(0, i+1), doc) } } }
+                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) { for (var i = 0; i < doc.title.length; i++) { emit(doc.title.toLowerCase().substring(0, i+1), doc) } } }
                     }
                 }
             };
