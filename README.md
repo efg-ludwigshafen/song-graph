@@ -10,12 +10,14 @@ Getting started
 git clone https://github.com/dominikschreiber/song-graph
 cd song-graph
 npm install
+bower install
 npm start
 ```
 
 This downloads, installs and starts your personal song-graph server (on port `process.env.PORT || 9802`). Everything will work, supposed you have met the **requirements**:
 
 - [node.js](http://nodejs.org/)
+- [bower](http://bower.io)
 - [couchdb](http://couchdb.apache.org/) either local or remote (specify as environment variable)
 ```bash
 # local installation (this is default)
@@ -37,6 +39,10 @@ Want do contribute but don't know where to start? Here are some points I'd like 
 
 Version history
 ---------------
+
+### 0.0.4
+- resolving frontend dependencies with bower
+- deleted `public/lib` in favor of `public/vendor` (which is ignored via `.gitignore`)
 
 ### 0.0.3
 - moved code to github, started history.
