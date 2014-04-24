@@ -1,14 +1,10 @@
 {
   "name": "song-graph",
-  "version": "0.0.3",
-  "author": "Dominik Schreiber <dominik@dominikschreiber.com>",
+  "version": "0.0.4",
+  "author": "Dominik Schreiber <dominik@dominikschreiber.com> (http://dominikschreiber.com)",
   "description": "statistics about songs played in a church",
   "contributors": [
-      {
-          "name": "Dominik Schreiber",
-          "email": "dominik@dominikschreiber.com",
-          "url": "http://dominikschreiber.com"
-      }
+      "Dominik Schreiber <dominik@dominikschreiber.com> (http://dominikschreiber.com)"
   ],
   "homepage": "http://repertoire.efg-ludwigshafen.de",
   "repository": {
