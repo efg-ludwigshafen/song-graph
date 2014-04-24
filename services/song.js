@@ -1,6 +1,6 @@
 var async = require('async')
   , extend = require('extend')
-  , db = require('nano')(process.env.DB || 'http://dominikschreiber:BUlTBiQIXz@81.169.133.153:5984/songrepo')
+  , db = require('nano')(process.env.DB || 'http://localhost:5984/song-graph')
   , songselect = require('./songselect');
 
 (function init() {
