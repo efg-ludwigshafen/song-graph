@@ -31,10 +31,10 @@ Vision / TODOs
 
 Want do contribute but don't know where to start? Here are some points I'd like to implement (but don't have the big need right now). So feel free to fork, pick one and start hacking.
 
-- [ ] list dates in nav dropdown instead of date-input
-- [ ] change song input field in nav dropdown from song ID to song name (like /new/date)
+- [x] list dates in nav dropdown instead of date-input
+- [x] change song input field in nav dropdown from song ID to song name (like /new/date)
 - [ ] add multilanguage support (with [angular-translate](https://github.com/PascalPrecht/angular-translate/))
-- [ ] integrate [SongSelect API]()
+- [ ] integrate [SongSelect API](http://blog.songselect.com/about-api/)
 - [ ] categorize songs based on language (could mean natural language processing to make a guess from the `song.excerpt`)
 
 Version history
@@ -42,6 +42,7 @@ Version history
 
 ### 0.0.5
 - bootswatch theme instead of default bootstrap
+- dates in nav with list instead of datepicker
 - pie chart from own directive
 
 ### 0.0.4
