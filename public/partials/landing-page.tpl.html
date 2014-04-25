@@ -11,7 +11,7 @@
             <table class="table table-striped">
                 <tr ng-click="showAllCharts = !showAllCharts" ng-init="showAllCharts = false" style="cursor:pointer">
                     <th class="text-center">#</th>
-                    <th><i class="fa fa-fw" ng-class="{'fa-eye': !showAllCharts, 'fa-eye-slash': showAllCharts}"></i> Lied</th>
+                    <th><i class="fa fa-fw text-muted" ng-class="{'fa-caret-right': !showAllCharts, 'fa-caret-down': showAllCharts}"></i> Lied</th>
                     <th class="text-center">&empty;</th>
                 </tr>
                 <tr ng-repeat="song in charts | orderObjectBy:'numPlayed':true | limitTo:((showAllCharts) ? 99999 : 10)">
