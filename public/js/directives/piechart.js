@@ -9,11 +9,10 @@ angular.module('songGraph.pieChartDirective', ['highcharts-ng', 'ng'])
         },
         template: '<highchart config="chart" class="classes"></highchart>',
         link: function($scope, element, attrs) {
-            $scope.$watch(function() { return ($scope.songs) ? $scope.songs.length : -1; }, function(newValue) {
+            $scope.$watch('songs', function(newValue) {
                 if ($scope.songs) {
                     $scope.chart = {
                         options: {
-                            chart: { type: 'pie' },
                             plotOptions: {
                                 pie: {
                                     dataLabels: {
@@ -36,7 +35,8 @@ angular.module('songGraph.pieChartDirective', ['highcharts-ng', 'ng'])
                                 name: 'Choral',
                                 y: $scope.songs.filter(function(s) { return s.songType === 'chant'; }).length,
                                 color: '#3fb618'
-                            }]
+                            }],
+                            type: 'pie'
                         }],
                         title: { text: 'Lieder nach Typ' },
                         formatter: function() {
@@ -44,7 +44,7 @@ angular.module('songGraph.pieChartDirective', ['highcharts-ng', 'ng'])
                         }
                     };
                 }
-            });
+            }, true);
         }
     };
 }]);
