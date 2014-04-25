@@ -13,14 +13,14 @@
                     <a ng-href="/#!/date/{{date.title}}">
                         {{date.title | date:'dd. MMMM yyyy'}}
                         <small>
-                            <span class="text-info">{{songsOfTypeInList(date.songs, 'new')}}</span> :
-                            <span class="text-warning">{{songsOfTypeInList(date.songs, 'old')}}</span> :
-                            <span class="text-success">{{songsOfTypeInList(date.songs, 'chant')}}</span>
+                            <span class="label label-info">{{songsOfTypeInList(date.songs, 'new')}}</span>
+                            <span class="label label-warning">{{songsOfTypeInList(date.songs, 'old')}}</span>
+                            <span class="label label-success">{{songsOfTypeInList(date.songs, 'chant')}}</span>
                         </small>
                     </a>
                 </li>
             </ul>
         </div>
-        <highchart config="songsAsChart" class="col-md-6"></highchart>
+        <piechart songs="songs" class="col-md-6"></piechart>
     </div>
 </div>

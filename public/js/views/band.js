@@ -1,4 +1,4 @@
-angular.module('songGraph.band', ['songGraph.orderObjectByFilter', 'ng', 'ngRoute', 'highcharts-ng'])
+angular.module('songGraph.band', ['songGraph.orderObjectByFilter', 'songGraph.pieChartDirective', 'ng', 'ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/band/:band', {
@@ -8,28 +8,8 @@ angular.module('songGraph.band', ['songGraph.orderObjectByFilter', 'ng', 'ngRout
 }])
 
 .controller('BandCtrl', ['$scope', '$http', '$routeParams', 'meta', function($scope, $http, $routeParams, meta) {
-    $scope.songsAsChart = {
-        options: {
-            chart: { type: 'pie' },
-            plotOptions: {
-                pie: {
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.0f}%'
-                    }
-                }
-            }
-        },
-        series: [{
-            data: []
-        }],
-        title: { text: 'Lieder nach Typ' },
-        loading: true,
-        formatter: function() {
-            return Math.round(this.percentage*100) / 100 + '%'
-        }
-    };
     $scope.dates = {};
+    $scope.songs = [];
     $scope.title = $routeParams.band;
     meta.setTitle($scope.title);
 
@@ -40,39 +20,16 @@ angular.module('songGraph.band', ['songGraph.orderObjectByFilter', 'ng', 'ngRout
                 title: date.id,
                 songs: []
             };
-            date.songs.forEach(function(song) {
-                $http.get('/song/' + song).success(function(result) {
-                    $scope.dates[date.id].songs.push(result);
-                    $scope.songsAsChart.series[0].data = [
-                        {
-                            name: 'neu',
-                            y: $scope.songsOfType('new'),
-                            color: '#9954bb'
-                        }, {
-                            name: 'alt',
-                            y: $scope.songsOfType('old'),
-                            color: '#ff7518'
-                        }, {
-                            name: 'Choral',
-                            y: $scope.songsOfType('chant'),
-                            color: '#3fb618'
-                        }
-                    ];
-                    $scope.songsAsChart.loading = false;
+            date.songs.forEach(function(sng) {
+                $http.get('/song/' + sng).success(function(song) {
+                    $scope.dates[date.id].songs.push(song);
+                    $scope.songs.push(song);
                 });
             });
-        })
+        });
     });
-
-    $scope.songsOfType = function(type) {
-        return Object.keys($scope.dates)
-            .map(function(dateKey) {
-                return $scope.songsOfTypeInList($scope.dates[dateKey].songs, type);
-            })
-            .reduce(function(a, b) { return a + b });
-    };
-
+    
     $scope.songsOfTypeInList = function(haystack, type) {
-        return haystack.filter(function(s) { return s.songType == type}).length
-    }
+        return haystack.filter(function(s) { return s.songType === type; }).length;
+    };
 }]);
