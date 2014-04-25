@@ -9,14 +9,14 @@
     <div class="row">
         <div class="col-md-6">
             <table class="table table-striped">
-                <tr><th class="text-center">#</th><th>Lied</th><th class="text-center">Gesamt (von {{charts.length}})</th></tr>
-                <tr ng-repeat="song in charts | orderObjectBy:'numPlayed':true | limitTo:10">
+                <tr ng-click="showAllCharts = !showAllCharts" ng-init="showAllCharts = false"><th class="text-center">#</th><th><i class="fa fa-fw" ng-class="{'fa-eye': !showAllCharts, 'fa-eye-slash': showAllCharts}"></i> Lied</th><th class="text-center">&empty;</th></tr>
+                <tr ng-repeat="song in charts | orderObjectBy:'numPlayed':true | limitTo:((showAllCharts) ? 99999 : 10)">
                     <td class="text-center"><span class="label" ng-class="{'label-info': song.songType == 'new', 'label-warning': song.songType == 'old', 'label-success': song.songType == 'chant', 'label-default': !song.songType}">{{$index + 1}}</span></td>
                     <td>
                         <a ng-href="/#!/song/{{song.id}}">{{song.title}}</a>
                         <small class="text-muted">(<span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span>)</small>
                     </td>
-                    <td class="text-center">{{song.numPlayed}} ({{ 100 * song.numPlayed / charts.length | number:2 }}%)</td>
+                    <td class="text-center">{{song.numPlayed}}</td>
                 </tr>
             </table>
         </div>
