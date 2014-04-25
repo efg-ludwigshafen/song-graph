@@ -6,7 +6,8 @@ angular.module('songGraph.metaService', ['ng'])
       , separator = ' | ';
 
     return {
-        title: function() { return [title, suffix].filter(function(e) { return e }).join(separator); },
+        title: function() { return [title, suffix].filter(function(e) { return e; }).join(separator); },
+        suffix: function() { return suffix; },
         setTitle: function(t) { title = t; },
         setSuffix: function(suf) { suffix = suf; },
         setSeparator: function(sep) { separator = sep; }
