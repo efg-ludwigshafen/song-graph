@@ -58,7 +58,7 @@ exports.findById = function(id, next) {
             if (err) {
                 next(err);
             } else {
-                next(undefined, cleanViewResult(result));
+                next(undefined, cleanViewResult({value: result}));
             }
         });
     }
