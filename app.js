@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/date/', date);
 app.use('/song/', song);
-app.use('/band/', band)
+app.use('/band/', band);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
