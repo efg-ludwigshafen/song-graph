@@ -40,6 +40,10 @@ Want do contribute but don't know where to start? Here are some points I'd like 
 Version history
 ---------------
 
+### 0.0.5
+- bootswatch theme instead of default bootstrap
+- pie chart from own directive
+
 ### 0.0.4
 - resolving frontend dependencies with bower
 - deleted `public/lib` in favor of `public/vendor` (which is ignored via `.gitignore`)

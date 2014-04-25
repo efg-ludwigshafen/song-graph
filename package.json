@@ -1,6 +1,6 @@
 {
   "name": "song-graph",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Dominik Schreiber <dominik@dominikschreiber.com> (http://dominikschreiber.com)",
   "description": "statistics about songs played in a church",
   "contributors": [

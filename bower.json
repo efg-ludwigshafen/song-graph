@@ -1,7 +1,7 @@
 {
   "name": "song-graph",
   "description": "statistics about songs played in a church",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "authors": [
     "Dominik Schreiber <dominik@dominikschreiber.com> (http://dominikschreiber.com)"
