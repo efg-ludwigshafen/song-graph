@@ -22,5 +22,9 @@ angular.module('songGraph', ['songGraph.metaService', 'songGraph.landingPage', '
 
     $http.get('/band/').success(function(result) {
         $scope.bands = result;
-    })
+    });
+	
+	$http.get('/date/').success(function(result) {
+		$scope.dates = result;
+	});
 }]);

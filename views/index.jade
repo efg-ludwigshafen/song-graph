@@ -25,13 +25,10 @@ html(lang="de", ng-app="songGraph", ng-controller="AppCtrl")
                         li.dropdown(ng-class="{'active': $location.path().indexOf('/date/') == 0}")
                             a.dropdown-toggle(data-toggle="dropdown") Gottesdienste
                             ul.dropdown-menu
-                                li(style="padding:0.618em; min-width:16em")
-                                    form(ng-submit="$location.path('/date/' + gotoDate)")
-                                        div.input-group
-                                            input.form-control(type="date", ng-model="gotoDate", required, placeholder="heute")
-                                            span.input-group-btn
-                                                button.btn.btn-primary(type="submit")
-                                                    i.fa.fa-search
+                                li(ng-repeat="date in dates")
+                                    a(ng-href="/#!/date/{{date.id}}")
+                                        span {{date.id | date:'dd. MMMM yyyy'}} 
+                                        small.text-muted ({{date.band}})
                         li.dropdown(ng-class="{'active': $location.path().indexOf('/band/') == 0}")
                             a.dropdown-toggle(data-toggle="dropdown") Bands
                             ul.dropdown-menu
