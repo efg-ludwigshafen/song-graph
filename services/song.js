@@ -1,6 +1,7 @@
 var async = require('async')
   , extend = require('extend')
   , db = require('nano')(process.env.DB || 'http://localhost:5984/song-graph')
+  , couchutils = require('./couchutils')
   , songselect = require('./songselect');
 
 (function init() {
@@ -8,19 +9,23 @@ var async = require('async')
         var views = {
                 views: {
                     findAll: {
-                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) { emit(doc._id, doc); } }
+                        map: function(doc) { if (doc._id.match(/^\d+$/) !== null) { emit(doc._id, doc); } }
                     },
                     findByName: {
-                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) emit(doc.title, doc); }
+                        map: function(doc) { if (doc._id.match(/^\d+$/) !== null) { emit(doc.title, doc); } }
                     },
                     findByNamePrefix: {
-                        map: function(doc) { if (doc._id.match(/^\d+$/) != null) { for (var i = 0; i < doc.title.length; i++) { emit(doc.title.toLowerCase().substring(0, i+1), doc) } } }
+                        map: function(doc) { var i; if (doc._id.match(/^\d+$/) !== null) { for (i = 0; i < doc.title.length; i++) { emit(doc.title.toLowerCase().substring(0, i+1), doc); } } }
                     }
                 }
             };
-        if (body) views._rev = body._rev;
+        if (body) {
+            views._rev = body._rev;  
+        }
         db.insert(views, '_design/song', function(err, body) {
-            if (err) console.log(err);
+            if (err) { 
+                console.info(err);
+            }
         });
     });
 })();
@@ -34,32 +39,31 @@ exports.isValidKey = function(key) {
 exports.findAll = function(next) {
     db.view('song', 'findAll', {}, function(err, body) {
         var result = [];
-        if (err) next(err);
-        else {
+        if (err) { 
+            next(err);
+        } else {
             result = body.rows.map(function(row) {
-                row.value.id = row.value._id;
-                for (var key in row.value) {
-                    if (row.value.hasOwnProperty(key) && key.indexOf('_') == 0) {
-                        delete row.value[key];
-                    }
-                }
-                delete row.value.excerpt;
-                delete row.value.year;
-                return row.value;
+                var value = couchutils.withoutUnderscored(row.value);
+                delete value.excerpt;
+                delete value.year;
+                return value;
             });
             async.parallel(result.map(function(song) {
                 return function(cb) {
-                    db.view('date', 'findBySong', { key: song.id + '' }, function(viewError, viewBody) {
+                    db.view('date', 'findBySong', { key: new String(song.id) }, function(viewError, viewBody) {
                         if (viewError) {
                             cb(viewError);
                         } else {
                             cb(undefined, extend(song, { history: viewBody.rows.map(function(row) { return row.value; }) }));
                         }
                     });
-                }
+                };
             }), function(errors, results) {
-                if (errors) next(errors);
-                else next(undefined, results);
+                if (errors) {
+                    next(errors);
+                } else {
+                    next(undefined, results);
+                }
             });
         }
     });
@@ -68,35 +72,36 @@ exports.findAll = function(next) {
 exports.findById = function(id, next) {
     id = new String(id);
 
-    if (!exports.isValidKey(id))
+    if (!exports.isValidKey(id)) {
         next('"' + id + '" is not a valid song key (must match ' + exports.validKeyRegex + ')');
-    else
+    } else {
         async.parallel([
                 function(cb) {
                     db.get(id, function(err, getBody) {
-                        if (err)
+                        var key;
+                        if (err) {
                             // song not found -> insert it from songselect
                             songselect.findById(id, function(err, body) {
-                                if (err)
+                                if (err) {
                                     cb(err);
-                                else {
+                                } else {
                                     // got it -> save to database
                                     body._id = id;
-                                    if (getBody) body._rev = getBody._rev;
+                                    if (getBody) {
+                                        body._rev = getBody._rev;
+                                    }
                                     db.insert(body, body._id, function(err, insertBody) {
-                                        if (err)
+                                        if (err) {
                                             cb(err);
-                                        else
+                                        } else {
                                             cb(undefined, body);
+                                        }
                                     });
                                 }
                             });
-                        else {
+                        } else {
                             // song already in database -> do not need to ask songselect
-                            getBody.id = getBody._id;
-                            delete getBody._id;
-                            delete getBody._rev;
-                            cb(undefined, getBody);
+                            cb(undefined, couchutils.withoutUnderscored(getBody));
                         }
                     })
                 },
@@ -120,6 +125,7 @@ exports.findById = function(id, next) {
                     next(undefined, result);
                 }
             });
+    }
 };
 
 exports.save = function(body, next) {
@@ -135,7 +141,9 @@ exports.save = function(body, next) {
         delete body.id;
 
         db.get(body._id, function(err, result) {
-            if (result) body._rev = result._rev;
+            if (result) {
+                body._rev = result._rev;
+            }
             db.insert(body, body._id, function(err, result) {
                 if (err) next(err);
                 else next(undefined, { id: body._id });
