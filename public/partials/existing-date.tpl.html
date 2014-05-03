@@ -14,9 +14,9 @@
     <div class="row">
         <div class="col-md-6">
             <ul class="nav nav-pills nav-stacked">
-                <li ng-repeat="song in songs"><a ng-href="/#!/song/{{song.id}}">
-                    <span ng-class="{'text-info': song.songType == 'new', 'text-warning': song.songType == 'old', 'text-success': song.songType == 'chant'}">{{song.title}}</span>
-                    <small class="text-muted"><span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span></small>
+                <li ng-repeat="song in songs"><a ng-href="/#!/song/{{song.id}}" class="row">
+                    <span class="col-xs-6" ng-class="{'text-info': song.songType == 'new', 'text-warning': song.songType == 'old', 'text-success': song.songType == 'chant'}">{{song.title}}</span>
+                    <small class="text-muted col-xs-6"><span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span></small>
                 </a></li>
             </ul>
         </div>
