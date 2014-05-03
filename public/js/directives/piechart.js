@@ -26,15 +26,15 @@ angular.module('songGraph.pieChartDirective', ['highcharts-ng', 'ng'])
                             data: [{
                                 name: 'neu',
                                 y: $scope.songs.filter(function(s) { return s.songType === 'new'; }).length,
-                                color: '#9954bb'
+                                color: '#00aba9'
                             }, {
                                 name: 'alt',
                                 y: $scope.songs.filter(function(s) { return s.songType === 'old'; }).length,
-                                color: '#ff7518'
+                                color: '#f09609'
                             }, {
                                 name: 'Choral',
                                 y: $scope.songs.filter(function(s) { return s.songType === 'chant'; }).length,
-                                color: '#3fb618'
+                                color: '#339933'
                             }],
                             type: 'pie'
                         }],
