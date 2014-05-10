@@ -1,4 +1,4 @@
-angular.module('songGraph', ['songGraph.metaService', 'songGraph.landingPage', 'songGraph.existingDate', 'songGraph.newDate', 'songGraph.song', 'songGraph.band', 'songGraph.configurationService', 'ng', 'ngRoute', 'ui.bootstrap'])
+angular.module('songGraph', ['songGraph.metaService', 'songGraph.songService', 'songGraph.landingPage', 'songGraph.existingDate', 'songGraph.newDate', 'songGraph.song', 'songGraph.band', 'songGraph.configurationService', 'ng', 'ngRoute', 'ui.bootstrap'])
 
 .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
   $routeProvider.otherwise({
@@ -8,7 +8,7 @@ angular.module('songGraph', ['songGraph.metaService', 'songGraph.landingPage', '
   $locationProvider.hashPrefix('!');
 }])
 
-.controller('AppCtrl', ['$scope', 'meta', 'conf', '$location', '$http', '$filter', function ($scope, meta, conf, $location, $http, $filter) {
+.controller('AppCtrl', ['$scope', 'meta', 'conf', 'song', '$location', '$http', '$filter', function ($scope, meta, conf, song, $location, $http, $filter) {
   $scope.meta = meta;
   meta.setSuffix(conf.name);
   meta.setSeparator(' | ');
@@ -20,5 +20,11 @@ angular.module('songGraph', ['songGraph.metaService', 'songGraph.landingPage', '
 
   $http.get('/date/').success(function (result) {
     $scope.dates = result;
+  });
+  
+  $scope.songService = song;
+  
+  $scope.$on('$locationChangeStart', function() {
+    $scope.song = undefined;
   });
 }]);
