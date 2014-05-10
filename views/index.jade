@@ -17,7 +17,7 @@ html(lang="de", ng-app="songGraph", ng-controller="AppCtrl")
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href="/#!/") {{meta.suffix()}}
+                    a.navbar-brand(href="/#!/", ng-bind="meta.suffix()") song-graph
                 div#navbar-content.collapse.navbar-collapse
                     a.btn.btn-primary.navbar-btn.navbar-left(href="/#!/new/date/")
                         i.fa.fa-plus
