@@ -20,7 +20,7 @@
         <div class="form-group">
           <label for="form-date-new-song" class="sr-only">Ein Lied</label>
           <div class="input-group">
-            <input type="text" id="form-date-new-song" class="form-control" placeholder="Ein Lied" ng-model="newSong" ng-enter="songs.push(newSong); newSong = undefined" typeahead="sng as sng.title for sng in songsByPrefix($viewValue)" typeahead-loading="loadingNewSongTypeahead" typeahead-template-url="/partials/song-typeahead.tpl.html" typeahead-editable="false" typeahead-wait-ms="200">
+            <input type="text" id="form-date-new-song" class="form-control" placeholder="Ein Lied" ng-model="newSong" ng-enter="songs.push(newSong); newSong = undefined" typeahead="sng as sng.title for sng in songService.songsByPrefix($viewValue)" typeahead-loading="loadingNewSongTypeahead" typeahead-template-url="/partials/song-typeahead.tpl.html" typeahead-editable="false" typeahead-wait-ms="200">
             <span class="input-group-addon">
               <i class="fa fa-thumbs-up fa-fw" ng-hide="loadingNewSongTypeahead"></i>
               <i class="fa fa-refresh fa-fw fa-spin" ng-show="loadingNewSongTypeahead"></i>

@@ -29,9 +29,11 @@ angular.module('songGraph.song', ['ng', 'ngRoute'])
           songType: $scope.songType,
           history: $scope.history
         };
-        $http.post('/song/' + song.id, song).success(function (result) {
-          console.log(result);
-        });
+        if (song.id) {
+          $http.post('/song/' + song.id, song).error(function (result) {
+            console.log(result);
+          });
+        }
       };
 
       $scope.$watch('songType', $scope.save);

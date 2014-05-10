@@ -1,4 +1,4 @@
-angular.module('songGraph.newDate', ['ng', 'ngRoute'])
+angular.module('songGraph.newDate', ['songGraph.songService', 'ng', 'ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/new/date', {
@@ -7,7 +7,7 @@ angular.module('songGraph.newDate', ['ng', 'ngRoute'])
   });
 }])
 
-.controller('NewDateCtrl', ['$scope', '$http', '$location', '$filter', 'meta', function ($scope, $http, $location, $filter, meta) {
+.controller('NewDateCtrl', ['$scope', '$http', '$location', '$filter', 'meta', 'song', function ($scope, $http, $location, $filter, meta, song) {
   meta.setTitle('Gottesdienst hinzufügen');
 
   $scope.id = $filter('date')(new Date(), 'yyyy-MM-dd');
@@ -25,10 +25,6 @@ angular.module('songGraph.newDate', ['ng', 'ngRoute'])
       $location.path('/date/' + result.id);
     });
   };
-
-  $scope.songsByPrefix = function (prefix) {
-    return $http.get('/song/by/prefix/' + prefix).then(function (result) {
-      return result.data;
-    });
-  };
+  
+  $scope.songService = song;
 }]);
