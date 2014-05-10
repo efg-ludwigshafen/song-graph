@@ -40,6 +40,11 @@ Want do contribute but don't know where to start? Here are some points I'd like 
 Version history
 ---------------
 
+### 0.0.6
+- custom bootstrap theme
+- song search field in navbar
+- charts on landing-page expandable to all songs ever sung
+
 ### 0.0.5
 - bootswatch theme instead of default bootstrap
 - dates in nav with list instead of datepicker
