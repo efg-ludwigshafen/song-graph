@@ -16,6 +16,8 @@ angular.module('songGraph.landingPage', ['songGraph.metaService', 'songGraph.ord
       return angular.extend({}, song, {
         numPlayed: song.history.length
       });
+    }).filter(function(song) {
+      return song.numPlayed > 0;
     });
   });
 }]);
