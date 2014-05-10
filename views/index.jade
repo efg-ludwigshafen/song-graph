@@ -1,55 +1,55 @@
 doctype html
 html(lang="de", ng-app="songGraph", ng-controller="AppCtrl")
-    head
-        title(ng-bind="meta.title()") SongGraph
-        meta(charset="utf-8")
-        meta(name="fragment", content="!")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/bootstrap.css")
-        link(rel="stylesheet", href="/vendor/font-awesome/css/font-awesome.min.css")
-        link(rel="stylesheet", href="/css/theme.css")
-    body
-        nav.navbar.navbar-static-top.navbar-default(role="navigation")
-            div.container
-                div.navbar-header
-                    button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-content")
-                        span.sr-only Navigation öffnen
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.navbar-brand(href="/#!/", ng-bind="meta.suffix()") song-graph
-                div#navbar-content.collapse.navbar-collapse
-                    a.btn.btn-primary.navbar-btn.navbar-left(href="/#!/new/date/")
-                        i.fa.fa-plus
-                    ul.nav.navbar-nav.navbar-left
-                        li.dropdown(ng-class="{'active': $location.path().indexOf('/date/') == 0}")
-                            a.dropdown-toggle(data-toggle="dropdown") Gottesdienste
-                            ul.dropdown-menu
-                                li(ng-repeat="date in dates")
-                                    a(ng-href="/#!/date/{{date.id}}")
-                                        span {{date.id | date:'dd. MMMM yyyy'}} 
-                                        small.text-muted ({{date.band}})
-                        li.dropdown(ng-class="{'active': $location.path().indexOf('/band/') == 0}")
-                            a.dropdown-toggle(data-toggle="dropdown") Bands
-                            ul.dropdown-menu
-                                li(ng-repeat="band in bands")
-                                    a(ng-href="/#!/band/{{band}}") {{band}}
-        div(ng-view)
-        script(src="/vendor/jquery/dist/jquery.min.js")
-        script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
-        script(src="/vendor/angular/angular.min.js")
-        script(src="/vendor/angular-route/angular-route.min.js")
-        script(src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js")
-        script(src="/vendor/highcharts/highcharts.js")
-        script(src="/vendor/highcharts-ng/dist/highcharts-ng.min.js")
-        script(src="/js/views/app.js")
-        script(src="/js/views/landing-page.js")
-        script(src="/js/views/new-date.js")
-        script(src="/js/views/existing-date.js")
-        script(src="/js/views/song.js")
-        script(src="/js/views/band.js")
-        script(src="/js/services/meta-service.js")
-        script(src="/js/services/configuration.js")
-        script(src="/js/filters/order-object-by.js")
-        script(src="/js/directives/ng-enter.js")
-        script(src="/js/directives/piechart.js")
+  head
+    title(ng-bind="meta.title()") SongGraph
+    meta(charset="utf-8")
+    meta(name="fragment", content="!")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/bootstrap.css")
+    link(rel="stylesheet", href="/vendor/font-awesome/css/font-awesome.min.css")
+    link(rel="stylesheet", href="/css/theme.css")
+  body
+    nav.navbar.navbar-static-top.navbar-default(role="navigation")
+      div.container
+        div.navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-content")
+            span.sr-only Navigation öffnen
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/#!/", ng-bind="meta.suffix()") song-graph
+        div#navbar-content.collapse.navbar-collapse
+          a.btn.btn-primary.navbar-btn.navbar-left(href="/#!/new/date/")
+            i.fa.fa-plus
+          ul.nav.navbar-nav.navbar-left
+            li.dropdown(ng-class="{'active': $location.path().indexOf('/date/') == 0}")
+              a.dropdown-toggle(data-toggle="dropdown") Gottesdienste
+              ul.dropdown-menu
+                li(ng-repeat="date in dates")
+                  a(ng-href="/#!/date/{{date.id}}")
+                    span {{date.id | date:'dd. MMMM yyyy'}} 
+                    small.text-muted ({{date.band}})
+            li.dropdown(ng-class="{'active': $location.path().indexOf('/band/') == 0}")
+              a.dropdown-toggle(data-toggle="dropdown") Bands
+              ul.dropdown-menu
+                li(ng-repeat="band in bands")
+                  a(ng-href="/#!/band/{{band}}") {{band}}
+    div(ng-view)
+    script(src="/vendor/jquery/dist/jquery.min.js")
+    script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/vendor/angular/angular.min.js")
+    script(src="/vendor/angular-route/angular-route.min.js")
+    script(src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js")
+    script(src="/vendor/highcharts/highcharts.js")
+    script(src="/vendor/highcharts-ng/dist/highcharts-ng.min.js")
+    script(src="/js/views/app.js")
+    script(src="/js/views/landing-page.js")
+    script(src="/js/views/new-date.js")
+    script(src="/js/views/existing-date.js")
+    script(src="/js/views/song.js")
+    script(src="/js/views/band.js")
+    script(src="/js/services/meta-service.js")
+    script(src="/js/services/configuration.js")
+    script(src="/js/filters/order-object-by.js")
+    script(src="/js/directives/ng-enter.js")
+    script(src="/js/directives/piechart.js")
