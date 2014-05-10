@@ -1,50 +1,41 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <header class="page-header">
-                <h1>Gottesdienst hinzufügen</h1>
-            </header>
-            <form role="form" ng-submit="save()">
-                <h3>Datum</h3>
-                <div class="form-group">
-                    <label for="form-date-header" class="sr-only">Gottesdienst am</label>
-                    <input type="date" class="form-control" placeholder="Gottesdienst am" ng-model="id">
-                </div>
-                <h3>Lieder</h3>
-                <p ng-repeat="song in songs">
-                    <button type="button" class="btn btn-link" ng-click="songs.splice($index, 1)"><i class="fa fa-times text-danger"></i></button>
-                    {{song.title}}
-                    <small class="text-muted">(<span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span>)</small>
-                </p>
-                <div class="form-group">
-                    <label for="form-date-new-song" class="sr-only">Ein Lied</label>
-                    <div class="input-group">
-                        <input type="text"
-                            id="form-date-new-song"
-                            class="form-control"
-                            placeholder="Ein Lied"
-                            ng-model="newSong"
-                            ng-enter="songs.push(newSong); newSong = undefined"
-                            typeahead="sng as sng.title for sng in songsByPrefix($viewValue)"
-                            typeahead-loading="loadingNewSongTypeahead"
-                            typeahead-template-url="/partials/song-typeahead.tpl.html"
-                            typeahead-editable="false"
-                            typeahead-wait-ms="200">
-                        <span class="input-group-addon">
-                            <i class="fa fa-thumbs-up fa-fw" ng-hide="loadingNewSongTypeahead"></i>
-                            <i class="fa fa-refresh fa-fw fa-spin" ng-show="loadingNewSongTypeahead"></i>
-                        </span>
-                    </div>
-                </div>
-                <h3>Band</h3>
-                <div class="form-group">
-                    <label for="form-date-band" class="sr-only">Bandname</label>
-                    <input type="text" id="form-date-band" class="form-control" placeholder="Bandname" ng-model="band" required>
-                </div>
-                <p class="text-right">
-                    <button type="submit" class="btn btn-primary">Gottesdienst hinzufügen</button>
-                </p>
-            </form>
+  <div class="row">
+    <div class="col-md-12">
+      <header class="page-header">
+        <h1>Gottesdienst hinzufügen</h1>
+      </header>
+      <form role="form" ng-submit="save()">
+        <h3>Datum</h3>
+        <div class="form-group">
+          <label for="form-date-header" class="sr-only">Gottesdienst am</label>
+          <input type="date" class="form-control" placeholder="Gottesdienst am" ng-model="id">
         </div>
+        <h3>Lieder</h3>
+        <p ng-repeat="song in songs">
+          <button type="button" class="btn btn-link" ng-click="songs.splice($index, 1)"><i class="fa fa-times text-danger"></i>
+          </button>
+          {{song.title}}
+          <small class="text-muted">(<span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span>)</small>
+        </p>
+        <div class="form-group">
+          <label for="form-date-new-song" class="sr-only">Ein Lied</label>
+          <div class="input-group">
+            <input type="text" id="form-date-new-song" class="form-control" placeholder="Ein Lied" ng-model="newSong" ng-enter="songs.push(newSong); newSong = undefined" typeahead="sng as sng.title for sng in songsByPrefix($viewValue)" typeahead-loading="loadingNewSongTypeahead" typeahead-template-url="/partials/song-typeahead.tpl.html" typeahead-editable="false" typeahead-wait-ms="200">
+            <span class="input-group-addon">
+              <i class="fa fa-thumbs-up fa-fw" ng-hide="loadingNewSongTypeahead"></i>
+              <i class="fa fa-refresh fa-fw fa-spin" ng-show="loadingNewSongTypeahead"></i>
+            </span>
+          </div>
+        </div>
+        <h3>Band</h3>
+        <div class="form-group">
+          <label for="form-date-band" class="sr-only">Bandname</label>
+          <input type="text" id="form-date-band" class="form-control" placeholder="Bandname" ng-model="band" required>
+        </div>
+        <p class="text-right">
+          <button type="submit" class="btn btn-primary">Gottesdienst hinzufügen</button>
+        </p>
+      </form>
     </div>
+  </div>
 </div>

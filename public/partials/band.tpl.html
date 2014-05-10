@@ -1,26 +1,26 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <header class="page-header">
-                <h1>Statistik für die Band {{title}}</h1>
-            </header>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <header class="page-header">
+        <h1>Statistik für die Band {{title}}</h1>
+      </header>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <ul class="nav nav-pills nav-stacked">
-                <li ng-repeat="date in dates | orderObjectBy:'id':reverse">
-                    <a ng-href="/#!/date/{{date.title}}" class="row">
-                        <span class="col-xs-6">{{date.title | date:'dd. MMMM yyyy'}}</span>
-                        <small class="col-xs-6">
-                            <span class="label label-info">{{songsOfTypeInList(date.songs, 'new')}}</span>
-                            <span class="label label-warning">{{songsOfTypeInList(date.songs, 'old')}}</span>
-                            <span class="label label-success">{{songsOfTypeInList(date.songs, 'chant')}}</span>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <piechart songs="songs" class="col-md-6"></piechart>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-repeat="date in dates | orderObjectBy:'id':reverse">
+          <a ng-href="/#!/date/{{date.title}}" class="row">
+            <span class="col-xs-6">{{date.title | date:'dd. MMMM yyyy'}}</span>
+            <small class="col-xs-6">
+              <span class="label label-info">{{songsOfTypeInList(date.songs, 'new')}}</span>
+              <span class="label label-warning">{{songsOfTypeInList(date.songs, 'old')}}</span>
+              <span class="label label-success">{{songsOfTypeInList(date.songs, 'chant')}}</span>
+            </small>
+          </a>
+        </li>
+      </ul>
     </div>
+    <piechart songs="songs" class="col-md-6"></piechart>
+  </div>
 </div>

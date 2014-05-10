@@ -1,25 +1,27 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <header class="page-header">
-                <h1>Gottesdienst am {{title}} <small>von der Band <a ng-href="/#!/band/{{band}}">{{band}}</a></small></h1>
-            </header>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <header class="page-header">
+        <h1>Gottesdienst am {{title}} <small>von der Band <a ng-href="/#!/band/{{band}}">{{band}}</a></small></h1>
+      </header>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Lieder</h2>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Lieder</h2>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <ul class="nav nav-pills nav-stacked">
-                <li ng-repeat="song in songs"><a ng-href="/#!/song/{{song.id}}" class="row">
-                    <span class="col-xs-6" ng-class="{'text-info': song.songType == 'new', 'text-warning': song.songType == 'old', 'text-success': song.songType == 'chant'}">{{song.title}}</span>
-                    <small class="text-muted col-xs-6"><span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span></small>
-                </a></li>
-            </ul>
-        </div>
-        <piechart songs="songs" class="col-md-6"></piechart>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-repeat="song in songs">
+          <a ng-href="/#!/song/{{song.id}}" class="row">
+            <span class="col-xs-6" ng-class="{'text-info': song.songType == 'new', 'text-warning': song.songType == 'old', 'text-success': song.songType == 'chant'}">{{song.title}}</span>
+            <small class="text-muted col-xs-6"><span ng-repeat="author in song.authors"><span ng-show="$index > 0">, </span>{{author}}</span></small>
+          </a>
+        </li>
+      </ul>
     </div>
+    <piechart songs="songs" class="col-md-6"></piechart>
+  </div>
 </div>
